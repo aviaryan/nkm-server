@@ -3,6 +3,7 @@ requests
 gunicorn
 eventlet
 greenlet
+flask-restplus
 
 # Database
 psycopg2
