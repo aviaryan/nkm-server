@@ -13,5 +13,6 @@ Flask-SQLAlchemy
 Flask-Migrate
 
 # Readability
+lxml==3.4.4
 readability-lxml
 beautifulsoup4
