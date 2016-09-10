@@ -1,4 +1,5 @@
 import requests
+import re
 from bs4 import BeautifulSoup
 from readability import Document
 
@@ -46,3 +47,12 @@ def get_page_image(page):
     if len(good_links) > 0:
         return good_links[int(len(good_links) / 2)]
     return None
+
+
+def get_domain_from_url(url):
+    """gets the root domain from url"""
+    match = re.findall(r'://.*?(/.*$)', url)
+    if len(match) == 0:
+        return url
+    url = url.replace(match[0], '')
+    return url

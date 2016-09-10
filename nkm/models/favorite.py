@@ -9,6 +9,7 @@ class FavArticle(db.Model):
     title = db.Column(db.String)
     text = db.Column(db.String)
     image = db.Column(db.String)
+    website = db.Column(db.String)
 
     user_id = db.Column(
         db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))

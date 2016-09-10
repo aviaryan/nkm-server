@@ -16,7 +16,8 @@ SUBSCRIPTION_ARTICLE = api.model('SubscriptionArticle', {
     'link': fields.String(),
     'title': fields.String(),
     'text': fields.String(),
-    'image': fields.String()
+    'image': fields.String(),
+    'website': fields.String()
 })
 
 SUBSCRIPTION = api.model('Subscription', {

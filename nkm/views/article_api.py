@@ -1,6 +1,6 @@
 from nkm.models.article import Article as ArticleModel
 from nkm.models.favorite import FavArticle as FavArticleModel
-from nkm.helpers.parser import get_page_html, extract_article_info
+from nkm.helpers.parser import get_page_html, extract_article_info, get_domain_from_url
 from nkm.helpers.helpers import save_to_db, delete_from_db, identity, jwt_auth
 from flask_restplus import Resource, fields
 from nkm.views import api
@@ -11,7 +11,8 @@ FAVORITE_ARTICLE = api.model('FavoriteArticle', {
     'link': fields.String(),
     'title': fields.String(),
     'text': fields.String(),
-    'image': fields.String()
+    'image': fields.String(),
+    'website': fields.String()
 })
 
 
@@ -21,6 +22,7 @@ class ArticleDAO():
         article_info = extract_article_info(html)
         article = ArticleModel()
         article.link = link
+        article.website = get_domain_from_url(link)
         article.title = article_info['title']
         article.text = article_info['content']
         article.image = article_info['image']
@@ -39,6 +41,7 @@ class FavoriteArticleDAO():
         fav.title = article.title
         fav.text = article.text
         fav.image = article.image
+        fav.website = article.website
         fav.user_id = identity().id
         if save_to_db(fav):
             return fav
