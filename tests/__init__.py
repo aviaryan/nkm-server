@@ -26,12 +26,25 @@ class NKMTestCase(unittest.TestCase):
             'password': 'test'
         })
 
-    def post_request(self, path, data):
+    def post_request(self, path, data, at=None):
         """
         send a post request to a url
         """
+        hdrs = {'content-type': 'application/json'}
+        if at:
+            hdrs['Authorization'] = 'JWT %s' % at
         return self.app.post(
             path,
             data=json.dumps(data),
-            headers={'content-type': 'application/json'}
+            headers=hdrs
         )
+
+    def get_access_token(self):
+        """
+        gets access token
+        """
+        resp = self.post_request('/api/login', data={
+            'email': 'test@gmail.com',
+            'password': 'test'
+        })
+        return json.loads(resp.data)['access_token']
