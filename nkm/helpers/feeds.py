@@ -15,7 +15,7 @@ def google_search_links(search, re_match=None):
     name = search
     name = name.replace(' ', '+')
     url = 'http://www.google.com/search?q=%s&tbm=nws' % name
-    url += '&tbs=qdr:d'  # past 24 hrs
+    url += '&tbs=ctr:countryIN&cr=countryIN'  # country india
     response = requests.get(url)
     html = response.text.encode('utf-8').decode('ascii', 'ignore')
     soup = BeautifulSoup(html, 'lxml')  # phast
