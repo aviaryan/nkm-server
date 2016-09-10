@@ -1,15 +1,13 @@
 import logging
+import os
 from flask import Flask
-# from os import environ
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
-
-# DATABASE_PATH = 'SQLite.db'
-# LOCAL = True
-# if environ.get('OPENSHIFT_PYTHON_IP'):
-#     LOCAL = False
+app.config.from_object(os.environ.get('CONFIG', 'config.LocalConfig'))
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 # Logger
 logger = logging.getLogger('nkm_logger')

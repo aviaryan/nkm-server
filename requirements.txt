@@ -4,3 +4,9 @@ gunicorn
 eventlet
 greenlet
 psycopg2
+
+# Database
+psycopg2
+SQLAlchemy
+Flask-SQLAlchemy
+Flask-Migrate

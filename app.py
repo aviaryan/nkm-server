@@ -1,9 +1,6 @@
 from os import environ
 from subprocess import call
 
-# from nkm.helpers.database import init_databases
-# from ymp3.schedulers import trending
-
 
 if __name__ == '__main__':
     # http://docs.gunicorn.org/en/stable/settings.html

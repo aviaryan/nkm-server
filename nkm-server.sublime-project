@@ -4,5 +4,8 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"python_interpreter": "~/anaconda2/bin/python"
+	},
 }
