@@ -1,4 +1,6 @@
+import re
 from datetime import datetime
+from flask import request
 from flask_restplus import Resource, fields
 from nkm import logger
 from nkm.views import api
@@ -40,7 +42,7 @@ class SubscriptionDAO():
     def get_full(self, sub_id):
         sub = SubscriptionModel.query.get(sub_id)
         if not sub.fetch():
-            return sub
+            return self.get_subs_image(sub)
         # delete old
         ArticleModel.query.filter_by(subscription_id=sub_id).delete()
         # re-fetch
@@ -52,7 +54,15 @@ class SubscriptionDAO():
         sub.last_fetched = datetime.now()
         save_to_db(sub)
         # return
-        return SubscriptionModel.query.get(sub_id)
+        subs = SubscriptionModel.query.get(sub_id)
+        return self.get_subs_image(subs)
+
+    def get_subs_image(self, subs):
+        if request.args.get('image') != 'none':
+            return subs
+        for article in subs.articles:
+            article.text = re.sub(r'<img.*?/?\s*?>', '', article.text)
+        return subs
 
     def create(self, data):
         sup = SubscriptionModel()
