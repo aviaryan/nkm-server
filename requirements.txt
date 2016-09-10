@@ -4,6 +4,7 @@ gunicorn
 eventlet
 greenlet
 flask-restplus
+Flask-JWT==0.3.2
 
 # Database
 psycopg2
