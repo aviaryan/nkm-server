@@ -7,7 +7,7 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.config.from_object(os.environ.get('CONFIG', 'config.LocalConfig'))
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# OpenShiftConfig
 db = SQLAlchemy(app)
 
 # JWT
