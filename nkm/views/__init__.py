@@ -9,3 +9,4 @@ api = Api(app, prefix='/api', doc='/api')
 import public_views
 import user_api
 import login_api
+import subscription_api
