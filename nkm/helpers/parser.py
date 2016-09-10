@@ -16,7 +16,12 @@ def extract_article_info(text):
     Uses readability module
     """
     doc = Document(text)
+    # safe fetch title
+    title = doc.short_title()
+    if not title:
+        title = doc.title()
+    # return
     return {
-        'title': doc.title(),
-        'content': doc.summary()
+        'title': title,
+        'content': doc.summary(html_partial=True)
     }
