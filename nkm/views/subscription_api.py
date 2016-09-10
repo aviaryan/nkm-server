@@ -2,7 +2,7 @@ from datetime import datetime
 from flask_restplus import Resource, fields
 from nkm import logger
 from nkm.views import api
-from nkm.helpers.helpers import save_to_db
+from nkm.helpers.helpers import save_to_db, delete_from_db
 from nkm.models.subscription import Subscription as SubscriptionModel
 from nkm.models.article import Article as ArticleModel
 from nkm.helpers.feeds import get_feeds
@@ -66,7 +66,11 @@ class SubscriptionDAO():
         return SubscriptionModel.query.filter_by(user_id=1).all()
 
     def delete(self, sub_id):
-        pass
+        item = SubscriptionModel.query.get(sub_id)
+        if delete_from_db(item):
+            return item
+        else:
+            return 'Problem occured', 400
 
 
 DAO = SubscriptionDAO()
@@ -80,6 +84,12 @@ class Subscription(Resource):
     def get(self, sub_id):
         """Fetch a subscription given its id"""
         return DAO.get_full(sub_id)
+
+    @api.doc('delete_subscription')
+    @api.marshal_with(SUBSCRIPTION)
+    def delete(self, sub_id):
+        """Delete a subscription given its id"""
+        return DAO.delete(sub_id)
 
 
 @api.route('/subscriptions')

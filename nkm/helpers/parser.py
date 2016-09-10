@@ -6,7 +6,7 @@ def get_page_html(url):
     """
     Gets HTML of a page
     """
-    response = requests.get(url, follow_redirects=True)
+    response = requests.get(url)
     return response.text
 
 
