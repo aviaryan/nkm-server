@@ -16,6 +16,16 @@ class NKMTestCase(unittest.TestCase):
         db.drop_all()
         os.unlink('test.sqlite3')
 
+    def register_user(self):
+        """
+        registers a user
+        """
+        self.post_request('/api/users', data={
+            'email': 'test@gmail.com',
+            'full_name': 'Mi Hawk',
+            'password': 'test'
+        })
+
     def post_request(self, path, data):
         """
         send a post request to a url

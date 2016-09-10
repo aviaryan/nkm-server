@@ -12,4 +12,9 @@ class TestUser(NKMTestCase):
         self.assertIn('test', resp.data)
 
     def test_jwt_login(self):
-        pass
+        self.register_user()
+        resp = self.post_request('/api/login', data={
+            'email': 'test@gmail.com',
+            'password': 'test'
+        })
+        self.assertIn('access_token', resp.data)
