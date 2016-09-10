@@ -13,7 +13,7 @@ TOKEN = api.model('Token', {
 })
 
 
-@api.route('/api/login')
+@api.route('/login')
 class Login(Resource):
     @api.doc('get_token')
     @api.expect(LOGIN, validate=True)

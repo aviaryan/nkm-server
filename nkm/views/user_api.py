@@ -5,7 +5,7 @@ from nkm.models.user import User as UserModel
 
 
 USER = api.model('User', {
-    'id': fields.Integer(),
+    'id': fields.Integer(required=True),
     'email': fields.String(required=True),
     'full_name': fields.String()
 })
@@ -24,14 +24,16 @@ class UserDAO():
         user = UserModel()
         user.email = data['email']
         user.phash = user.hash_password(data['password'])
-        save_to_db(user)
+        user.full_name = data.get('full_name')
+        if not save_to_db(user):
+            return 'Email exists', 400
         return user
 
 
 DAO = UserDAO()
 
 
-@api.route('/api/users/<int:user_id>')
+@api.route('/users/<int:user_id>')
 class User(Resource):
     @api.doc('get_user')
     @api.marshal_with(USER)
@@ -40,7 +42,7 @@ class User(Resource):
         return DAO.get(user_id)
 
 
-@api.route('/api/users')
+@api.route('/users')
 class UserList(Resource):
     @api.doc('create_user')
     @api.marshal_with(USER)
