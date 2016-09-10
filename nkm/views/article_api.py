@@ -20,7 +20,7 @@ class ArticleDAO():
     def create(self, link, sub_id):
         html = get_page_html(link)
         article_info = extract_article_info(html)
-        if article_info['title'] == '403 Forbidden':
+        if article_info['title'].find('403') > -1:  # UGLY
             return 'Some Error Occured', 400
         article = ArticleModel()
         article.link = link
