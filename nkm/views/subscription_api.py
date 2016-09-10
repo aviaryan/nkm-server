@@ -4,12 +4,11 @@ from flask import request
 from flask_restplus import Resource, fields
 from nkm import logger
 from nkm.views import api
-from nkm.helpers.helpers import save_to_db, delete_from_db
+from nkm.helpers.helpers import save_to_db, delete_from_db, identity, jwt_auth
 from nkm.models.subscription import Subscription as SubscriptionModel
 from nkm.models.article import Article as ArticleModel
 from nkm.helpers.feeds import get_feeds
 from article_api import ArticleDAO
-# from flask_jwt import jwt_required, current_identity
 
 
 SUBSCRIPTION_ARTICLE = api.model('SubscriptionArticle', {
@@ -68,13 +67,13 @@ class SubscriptionDAO():
         sup = SubscriptionModel()
         sup.term = data['term']
         sup.last_fetched = None
-        sup.user_id = 1
+        sup.user_id = identity().id
         if not save_to_db(sup):
             return 'Problem occured', 400
         return sup
 
     def list(self):
-        return SubscriptionModel.query.filter_by(user_id=1).all()
+        return SubscriptionModel.query.filter_by(user_id=identity().id).all()
 
     def delete(self, sub_id):
         item = SubscriptionModel.query.get(sub_id)
@@ -110,10 +109,12 @@ class SubscriptionList(Resource):
     @api.expect(SUBSCRIPTION_POST)
     def post(self):
         """Create a subscription"""
+        jwt_auth()
         return DAO.create(self.api.payload)
 
     @api.doc('get_subscription_list')
     @api.marshal_list_with(SUBSCRIPTION)
     def get(self):
         """List all subscriptions"""
+        jwt_auth()
         return DAO.list()

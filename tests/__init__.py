@@ -16,12 +16,12 @@ class NKMTestCase(unittest.TestCase):
         db.drop_all()
         os.unlink('test.sqlite3')
 
-    def register_user(self):
+    def register_user(self, email='test@gmail.com'):
         """
         registers a user
         """
         self.post_request('/api/users', data={
-            'email': 'test@gmail.com',
+            'email': email,
             'full_name': 'Mi Hawk',
             'password': 'test'
         })
@@ -39,12 +39,12 @@ class NKMTestCase(unittest.TestCase):
             headers=hdrs
         )
 
-    def get_access_token(self):
+    def get_access_token(self, email='test@gmail.com'):
         """
         gets access token
         """
         resp = self.post_request('/api/login', data={
-            'email': 'test@gmail.com',
+            'email': email,
             'password': 'test'
         })
         return json.loads(resp.data)['access_token']

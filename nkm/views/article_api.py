@@ -1,7 +1,7 @@
 from nkm.models.article import Article as ArticleModel
 from nkm.models.favorite import FavArticle as FavArticleModel
 from nkm.helpers.parser import get_page_html, extract_article_info
-from nkm.helpers.helpers import save_to_db, delete_from_db
+from nkm.helpers.helpers import save_to_db, delete_from_db, identity, jwt_auth
 from flask_restplus import Resource, fields
 from nkm.views import api
 
@@ -39,14 +39,14 @@ class FavoriteArticleDAO():
         fav.title = article.title
         fav.text = article.text
         fav.image = article.image
-        fav.user_id = 1  # CHANGE
+        fav.user_id = identity().id
         if save_to_db(fav):
             return fav
         else:
             return 'Some Error Occured', 400
 
     def list(self):
-        return FavArticleModel.query.filter_by(user_id=1).all()
+        return FavArticleModel.query.filter_by(user_id=identity().id).all()
 
     def delete(self, article_id):
         item = FavArticleModel.query.get(article_id)
@@ -65,6 +65,7 @@ class FavoriteArticle(Resource):
     @api.marshal_with(FAVORITE_ARTICLE)
     def post(self, article_id):
         """Make an article favorite"""
+        jwt_auth()
         return FavDAO.create(article_id)
 
     @api.doc('delete_fav_article')
@@ -80,4 +81,5 @@ class FavoriteArticleList(Resource):
     @api.marshal_list_with(FAVORITE_ARTICLE)
     def get(self):
         """List all fav articles"""
+        jwt_auth()
         return FavDAO.list()
