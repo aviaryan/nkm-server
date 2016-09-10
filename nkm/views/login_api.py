@@ -1,7 +1,9 @@
 import json
+import traceback
 from flask.ext.restplus import Resource, fields
 from flask_jwt import JWTError
 from nkm.views import api
+from nkm import logger
 
 LOGIN = api.model('Login', {
     'email': fields.String(required=True),
@@ -24,4 +26,5 @@ class Login(Resource):
             response = jwt.auth_request_callback()
             return json.loads(response.data)
         except JWTError as e:
+            logger.info(traceback.format_exc())
             return e.error, 400
