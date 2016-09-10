@@ -8,6 +8,7 @@ class Article(db.Model):
     link = db.Column(db.String)
     title = db.Column(db.String)
     text = db.Column(db.String)
+    image = db.Column(db.String)
 
     subscription_id = db.Column(
         db.Integer, db.ForeignKey('subscriptions.id', ondelete='CASCADE'))

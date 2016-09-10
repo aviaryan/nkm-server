@@ -15,9 +15,10 @@ def google_search_links(search, re_match=None):
     name = search
     name = name.replace(' ', '+')
     url = 'http://www.google.com/search?q=%s&tbm=nws' % name
+    url += '&tbs=qdr:d'  # past 24 hrs
     response = requests.get(url)
-    html = response.text
-    soup = BeautifulSoup(html.decode(errors='replace'), 'lxml')  # phast
+    html = response.text.encode('utf-8').decode('ascii', 'ignore')
+    soup = BeautifulSoup(html, 'lxml')  # phast
     links = []
     for h3 in soup.find_all('h3'):
         link = h3.a['href']

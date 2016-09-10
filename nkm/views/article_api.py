@@ -10,7 +10,8 @@ FAVORITE_ARTICLE = api.model('FavoriteArticle', {
     'id': fields.Integer(required=True),
     'link': fields.String(),
     'title': fields.String(),
-    'text': fields.String()
+    'text': fields.String(),
+    'image': fields.String()
 })
 
 
@@ -22,6 +23,7 @@ class ArticleDAO():
         article.link = link
         article.title = article_info['title']
         article.text = article_info['content']
+        article.image = article_info['image']
         article.subscription_id = sub_id
         if save_to_db(article):
             return article
@@ -36,6 +38,7 @@ class FavoriteArticleDAO():
         fav.link = article.link
         fav.title = article.title
         fav.text = article.text
+        fav.image = article.image
         fav.user_id = 1  # CHANGE
         if save_to_db(fav):
             return fav

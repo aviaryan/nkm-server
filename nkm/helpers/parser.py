@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 from readability import Document
 
 
@@ -20,8 +21,28 @@ def extract_article_info(text):
     title = doc.short_title()
     if not title:
         title = doc.title()
+    # content
+    content = doc.summary(html_partial=True)
+    image = get_page_image(doc.content())
     # return
     return {
         'title': title,
-        'content': doc.summary(html_partial=True)
+        'content': content,
+        'image': image
     }
+
+
+def get_page_image(page):
+    """
+    Gets the link to image of the page
+    """
+    soup = BeautifulSoup(page, 'lxml')
+    tags = soup.findAll('img')
+    tag = ''
+    good_links = []
+    for tag in tags:
+        if tag.get('src') and tag['src'].startswith('http'):
+            good_links.append(tag['src'])
+    if len(good_links) > 0:
+        return good_links[int(len(good_links) / 2)]
+    return None
