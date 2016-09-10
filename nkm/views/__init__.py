@@ -10,3 +10,4 @@ import public_views
 import user_api
 import login_api
 import subscription_api
+import article_api

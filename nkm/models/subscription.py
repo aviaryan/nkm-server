@@ -2,7 +2,7 @@ from nkm import db
 from datetime import datetime
 
 TIMELIMIT = 24 * 3600
-TIMELIMIT = 60
+# TIMELIMIT = 60
 
 
 class Subscription(db.Model):
