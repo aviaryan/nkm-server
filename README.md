@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/aviaryan/nkm-server.svg?branch=master)](https://travis-ci.org/aviaryan/nkm-server)
 
-Hackathon Project ( http://nowknowmore.aavi.me/ )
+Hackathon Project ( http://nowknowmore.aavi.me/ ) [Download APK](https://drive.google.com/file/d/0B5BiL3_YK1dYaTNfc2x5RFVtenc/view)
 
 > Now Know More is a news aggregation service that allows you to follow any topic of your interest and get latest news on the same.
 The topic can by anything from “Good Recipes” to “Stock Market” to “Fitness Tips”.
