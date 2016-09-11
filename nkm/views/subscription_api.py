@@ -7,8 +7,10 @@ from nkm.views import api
 from nkm.helpers.helpers import save_to_db, delete_from_db, identity, jwt_auth
 from nkm.models.subscription import Subscription as SubscriptionModel
 from nkm.models.article import Article as ArticleModel
+from nkm.models.user import User as UserModel
 from nkm.helpers.feeds import get_feeds
 from article_api import ArticleDAO
+from flask_jwt import current_identity
 
 
 SUBSCRIPTION_ARTICLE = api.model('SubscriptionArticle', {
@@ -65,6 +67,18 @@ class SubscriptionDAO():
         return subs
 
     def create(self, data):
+        """bug in hackathon app submitted, so this"""
+        try:
+            id_ = current_identity.id
+            return self.create_real(data)
+        except Exception:
+            users = UserModel.query.all()
+            for user in users:
+                sup = self.create_base(data, user)
+            return sup
+
+    def create_real(self, data):
+        """real create"""
         sup = SubscriptionModel()
         sup.term = data['term']
         sup.last_fetched = None
