@@ -1,5 +1,7 @@
 ## NowKnowMore
 
+[![Build Status](https://travis-ci.org/aviaryan/nkm-server.svg?branch=master)](https://travis-ci.org/aviaryan/nkm-server)
+
 Hackathon Project ( http://nowknowmore.aavi.me/ )
 
 > Now Know More is a news aggregation service that allows you to follow any topic of your interest and get latest news on the same.
