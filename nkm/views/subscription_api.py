@@ -65,10 +65,13 @@ class SubscriptionDAO():
         return subs
 
     def create(self, data):
+        return self.create_base(data, identity())
+
+    def create_base(self, data, user):
         sup = SubscriptionModel()
         sup.term = data['term']
         sup.last_fetched = None
-        sup.user_id = identity().id
+        sup.user_id = user.id
         if not save_to_db(sup):
             return 'Problem occured', 400
         return sup

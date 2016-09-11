@@ -2,6 +2,7 @@ from flask_restplus import Resource, fields
 from nkm.views import api
 from nkm.helpers.helpers import save_to_db
 from nkm.models.user import User as UserModel
+from nkm.views.subscription_api import DAO as SubDAO
 
 
 USER = api.model('User', {
@@ -27,6 +28,8 @@ class UserDAO():
         user.full_name = data.get('full_name')
         if not save_to_db(user):
             return 'Email exists', 400
+        SubDAO.create_base({'term': 'Politics'}, user)
+        SubDAO.create_base({'term': 'Technology'}, user)
         return user
 
 
