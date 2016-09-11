@@ -2,6 +2,9 @@
 
 Hackathon Project ( http://nowknowmore.aavi.me/ )
 
+> Now Know More is a news aggregation service that allows you to follow any topic of your interest and get latest news on the same.
+The topic can by anything from “Good Recipes” to “Stock Market” to “Fitness Tips”.
+
 
 #### Running
 
