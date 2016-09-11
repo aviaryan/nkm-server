@@ -1,0 +1,139 @@
+body {
+  background: #303030;
+}
+
+.topp {
+  padding-right: 4%;
+  background: rgba(120, 170, 170, 0.9);
+  font-family: Avantgarde, sans-serif;
+  font-size: 18px;
+}
+
+.image{
+  padding-top: 50px;
+}
+
+.topnav {
+  background: rgba(120, 170, 170, 0.5);
+}
+
+.topnav ul.navbar-nav li a {
+  color: black;
+  font-weight: 400;
+}
+
+.topnav ul.navbar-nav li a:hover {
+  background: rgba(190, 230, 230, 0.9);
+  color: #000;
+}
+
+.Head {
+  width: 90%;
+}
+
+.Title {
+  background: fixed;
+  padding-top: 50px;
+  padding-bottom: 10px;
+  font-size: 6em;
+  text-align: center;
+  color: #e0e0e0
+}
+
+.Homepg {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: url('http://www.nicabm.com/wp-content/uploads/2012/08/smartphone-hands.jpg') no-repeat center fixed;
+  background-size: cover;
+}
+
+.Overlay {
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+}
+
+.overlay1 {
+  background: rgba(255, 255, 255, 0.8);
+  width: 100%;
+}
+
+.Abt {
+  color: #eeeeee;
+  text-align: center;
+}
+
+.hhr {
+  padding: 30px;
+}
+
+.hrr {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+p {
+  color: #f0f0f0;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  line-height: 36px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-justify: inter-word;
+}
+
+.serve {
+  color: #f0f0f0;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  line-height: 36px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-justify: inter-word;
+}
+
+.sev {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  color: #eeeeff;
+  text-align: center;
+}
+
+.logo {
+  border-radius: 50%;
+}
+
+.l1 {
+  color: #ddddff
+}
+
+.Services {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  background: url('https://webaholics.co/wp-content/uploads/2016/01/Webaholics-Our-Services-Banner-Background.jpg') no-repeat center fixed;
+  background-size: cover;
+}
+
+footer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: rgba(210, 230, 230, 0.8);
+  margin-top: 15%;
+  margin-bottom: 0px;
+}
+
+p.copyright {
+  padding-bottom: 15px;
+  font-size: 24px;
+  color: #000;
+  font-weight: 500;
+}
+
+p.foot {
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.clr {
+  color: #000;
+}
