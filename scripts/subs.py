@@ -1,7 +1,7 @@
 import requests
 
 root = 'http://nowknowmore.aavi.me'
-root = 'http://localhost:5000'
+# root = 'http://localhost:5000'
 
 r = requests.post(root + '/api/login', json={
     'email': 'string3',
@@ -17,14 +17,14 @@ r = requests.get(root + '/api/subscriptions', headers={
 print r.content
 
 # add subscription
-# r = requests.post(root + '/api/subscriptions', json={
-#     'term': 'Politics'
-# }, headers={
-#     'Authorization': 'JWT %s' % at
-# })
-# print r.content
+r = requests.post(root + '/api/subscriptions', json={
+    'term': 'Politics China'
+}, headers={
+    'Authorization': 'JWT %s' % at
+})
+print r.content
 
 
 # get single sub
-r = requests.get(root + '/api/subscriptions/17')
-print r.content
+# r = requests.get(root + '/api/subscriptions/17')
+# print r.content
